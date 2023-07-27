@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalles del Servicio</title>
+</head>
+<body>
+    <h1>Detalles del Servicio</h1>
+    <table>
+        <tr>
+            <th>ID:</th>
+            <td><%= servicio.id %></td>
+        </tr>
+        <tr>
+            <th>Nombre:</th>
+            <td><%= servicio.nombre %></td>
+        </tr>
+        <tr>
+            <th>Descripción:</th>
+            <td><%= servicio.descripcion %></td>
+        </tr>
+        <tr>
+            <th>Precio:</th>
+            <td>$<%= servicio.precio.toFixed(2) %></td>
+        </tr>
+        <tr>
+            <th>Categoría:</th>
+            <td><%= servicio.categoria %></td>
+        </tr>
+    </table>
+</body>
+</html>

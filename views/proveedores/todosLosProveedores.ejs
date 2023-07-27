@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Todos los Proveedores</title>
+</head>
+<body>
+    <h1>Todos los Proveedores</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% proveedores.forEach(proveedor => { %>
+                <tr>
+                    <td><%= proveedor.id %></td>
+                    <td><%= proveedor.nombre %></td>
+                    <td><%= proveedor.direccion %></td>
+                    <td><%= proveedor.telefono %></td>
+                    <td><%= proveedor.correo %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>

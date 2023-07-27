@@ -1,0 +1,34 @@
+<!-- views/obtenerCuentasPorEstado.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cuentas por Estado</title>
+</head>
+<body>
+    <h1>Cuentas por Estado - <%= estado %></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Serial</th>
+                <th>Fecha de Adquisición</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cuentas.forEach((cuenta) => { %>
+            <tr>
+                <td><%= cuenta.id %></td>
+                <td><%= cuenta.nombre %></td>
+                <td><%= cuenta.descripcion %></td>
+                <td><%= cuenta.serial %></td>
+                <td><%= cuenta.fechaAdquisicion.toISOString().split('T')[0] %></td>
+                <td><%= cuenta.estado %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

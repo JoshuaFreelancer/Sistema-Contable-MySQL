@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facturas por Cliente</title>
+</head>
+<body>
+    <h1>Facturas por Cliente - <%= cliente %></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Proveedor</th>
+                <th>Productos</th>
+                <th>Total</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% facturasPorCliente.forEach((factura) => { %>
+            <tr>
+                <td><%= factura.id %></td>
+                <td><%= factura.cliente %></td>
+                <td><%= factura.proveedor %></td>
+                <td><%= factura.productos %></td>
+                <td><%= factura.total %></td>
+                <td><%= factura.fecha.toISOString().split('T')[0] %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

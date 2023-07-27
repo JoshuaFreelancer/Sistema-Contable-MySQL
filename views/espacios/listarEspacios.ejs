@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Espacios</title>
+</head>
+<body>
+    <h1>Listado de Espacios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+                <th>Capacidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% espacios.forEach((espacio) => { %>
+            <tr>
+                <td><%= espacio.id %></td>
+                <td><%= espacio.nombre %></td>
+                <td><%= espacio.ubicacion %></td>
+                <td><%= espacio.capacidad %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,6 @@
+.env
+.env.production
+node_modules
+knexfile.js
+sistema_contable(Copia seguridad).sql
+

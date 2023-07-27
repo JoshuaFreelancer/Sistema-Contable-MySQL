@@ -1,0 +1,31 @@
+<!-- views/listarCuentas.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Cuentas</title>
+</head>
+<body>
+  <h1>Lista de Cuentas</h1>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Serial</th>
+      <th>Fecha de Adquisición</th>
+      <th>Estado</th>
+    </tr>
+    <% cuentas.forEach(cuenta => { %>
+      <tr>
+        <td><%= cuenta.id %></td>
+        <td><%= cuenta.nombre %></td>
+        <td><%= cuenta.descripcion %></td>
+        <td><%= cuenta.serial %></td>
+        <td><%= cuenta.fechaAdquisicion %></td>
+        <td><%= cuenta.estado %></td>
+      </tr>
+    <% }); %>
+  </table>
+</body>
+</html>

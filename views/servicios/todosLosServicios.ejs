@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todos los Servicios</title>
+</head>
+<body>
+    <h1>Todos los Servicios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% servicios.forEach(servicio => { %>
+                <tr>
+                    <td><%= servicio.id %></td>
+                    <td><%= servicio.nombre %></td>
+                    <td><%= servicio.descripcion %></td>
+                    <td>$<%= servicio.precio.toFixed(2) %></td>
+                    <td><%= servicio.categoria %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>

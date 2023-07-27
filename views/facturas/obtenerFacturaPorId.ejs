@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalles de la Factura</title>
+</head>
+<body>
+    <h1>Detalles de la Factura</h1>
+    <p><strong>ID:</strong> <%= factura.id %></p>
+    <p><strong>Cliente:</strong> <%= factura.cliente %></p>
+    <p><strong>Proveedor:</strong> <%= factura.proveedor %></p>
+    <p><strong>Productos:</strong> <%= factura.productos %></p>
+    <p><strong>Total:</strong> <%= factura.total %></p>
+    <p><strong>Fecha:</strong> <%= factura.fecha.toISOString().split('T')[0] %></p>
+</body>
+</html>

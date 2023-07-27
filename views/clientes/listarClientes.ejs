@@ -1,0 +1,32 @@
+<!-- views/listarClientes.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Clientes</title>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% clientes.forEach((cliente) => { %>
+            <tr>
+                <td><%= cliente.id %></td>
+                <td><%= cliente.nombre %></td>
+                <td><%= cliente.direccion %></td>
+                <td><%= cliente.telefono %></td>
+                <td><%= cliente.correo %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
