@@ -5,7 +5,6 @@ exports.up = function (knex) {
       table.string('direccion').notNullable();
       table.string('telefono').notNullable();
       table.string('correo').notNullable();
-      table.timestamps(true, true);
     });
   };
   

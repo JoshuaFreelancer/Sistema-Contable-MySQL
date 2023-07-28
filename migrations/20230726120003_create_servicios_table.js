@@ -5,7 +5,6 @@ exports.up = function (knex) {
       table.text('descripcion');
       table.decimal('precio', 10, 2).notNullable();
       table.string('categoria').notNullable();
-      table.timestamps(true, true);
     });
   };
   

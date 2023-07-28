@@ -4,7 +4,6 @@ exports.up = function (knex) {
       table.string('nombre').notNullable();
       table.string('ubicacion').notNullable();
       table.integer('capacidad').notNullable();
-      table.timestamps(true, true);
     });
   };
   

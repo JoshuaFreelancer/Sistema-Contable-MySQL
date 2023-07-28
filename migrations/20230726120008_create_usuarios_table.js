@@ -4,7 +4,6 @@ exports.up = function (knex) {
       table.string('nombre').notNullable();
       table.string('clave').notNullable();
       table.enu('rol', ['Facturador', 'Contador', 'Personal']).notNullable();
-      table.timestamps(true, true);
     });
   };
   

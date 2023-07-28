@@ -6,7 +6,6 @@ exports.up = function (knex) {
       table.decimal('precio', 10, 2).notNullable();
       table.string('categoria').notNullable();
       table.integer('stock').notNullable();
-      table.timestamps(true, true);
     });
   };
   

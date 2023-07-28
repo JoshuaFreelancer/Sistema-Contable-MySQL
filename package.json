@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
     "migrate": "npx knex migrate:latest --env=development",
-      "seed": "npx knex seed:run --env=development"
-    }
+    "seed": "npx knex seed:run --env=development"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -24,5 +23,5 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-  },
+  }
 }
