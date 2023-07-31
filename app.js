@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Ruta para el mensaje de bienvenida
 app.get('/', (req, res) => {
   res.render('index', { title: 'Bienvenido a la base de datos Sistema Contable',
-                        message: 'Para usar la aplicación, regístrate usando la ruta localhost:3000/api/register y loguéate con localhost:3000/login. ¡Disfruta de la aplicación!' });
+                        message: 'Para usar la aplicación, regístrate usando la ruta localhost:3000/api/register y loguéate con localhost:3000/api/login. No olvides agregar los Header necesarios ¡Disfruta de la aplicación!' });
 });
 
 // Manejo de rutas no encontradas (404)
