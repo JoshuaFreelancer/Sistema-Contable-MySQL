@@ -44,13 +44,37 @@ class CuentasController {
   }
 
   async agregarCuenta(req, res) {
+    // Guardar el JWT en una variable antes de eliminarlo del objeto req.body
+  const jwt = req.body.jwt;
+
+  // Eliminar el campo jwt del objeto req.body
+  delete req.body.jwt;
+
     try {
-      const nuevaCuenta = req.body;
+      // Clonar el objeto req.body para evitar modificarlo directamente
+      const nuevaCuenta = { ...req.body };
       await cuentas.agregarCuenta(nuevaCuenta);
-      res.status(201).json({ message: 'Cuenta agregada exitosamente' });
+  
+      if (req.xhr) {
+        // Si es una solicitud AJAX, enviar la respuesta JSON
+        res.status(201).json({ message: 'Cuenta agregada exitosamente' });
+      } else {
+        // Si es una solicitud normal, renderizar la vista EJS y pasar la información de las cuentas
+        res.render('cuentas/nuevaCuenta', { message: 'Cuenta agregada exitosamente' });
+      }
+
+      // Restaurar el JWT en el cuerpo de la solicitud después de agregar el cliente
+    req.body.jwt = jwt;
+
     } catch (error) {
       console.error('Error al agregar la cuenta:', error);
-      res.status(500).json({ message: 'Ocurrió un error al agregar la cuenta.' });
+      if (req.xhr) {
+        // Si es una solicitud AJAX, enviar una respuesta de error en JSON
+        res.status(500).json({ message: 'Ocurrió un error al agregar la cuenta.' });
+      } else {
+        // Si es una solicitud normal, mostrar el mensaje de error y renderizar la vista EJS sin datos de cuentas
+        res.render('cuentas/nuevaCuenta', { message: 'Agregue una nueva cuenta...' });
+      }
     }
   }
 

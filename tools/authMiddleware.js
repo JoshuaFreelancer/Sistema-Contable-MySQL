@@ -35,8 +35,15 @@ const rutasProtegidas = {
 // Middleware para verificar el JWT y el rol del usuario
 function authenticateUser(req, res, next) {
   try {
+    // Intenta obtener el JWT del campo jwt en el cuerpo de la solicitud o del encabezado de autorización
+    const token = req.body.jwt || (req.header('Authorization') || '').replace('Bearer ', '');
+
+    // Si no se encontró un JWT válido, retornar un error
+    if (!token) {
+      return res.status(401).json({ error: 'Token inválido o no proporcionado.' });
+    }
+
     // Verificar el JWT proporcionado por el cliente
-    const token = req.header('Authorization').replace('Bearer ', '');
     const decodedToken = verifyToken(token);
 
     // Obtener el rol del usuario desde el JWT
@@ -54,7 +61,7 @@ function authenticateUser(req, res, next) {
         // Si el rol del usuario está permitido, verificar si la operación está permitida
         if (rutaProtegida.operacionesPermitidas.includes(metodoSolicitud)) {
           // Si la operación está permitida, continuar con la solicitud
-          next();
+          return next();
         } else {
           // Si la operación no está permitida para el rol del usuario, retornar un error de acceso no autorizado
           return res.status(403).json({ error: 'Operación no permitida para el rol del usuario.' });
@@ -63,10 +70,10 @@ function authenticateUser(req, res, next) {
         // Si el rol del usuario no está permitido para esta ruta, retornar un error de acceso no autorizado
         return res.status(403).json({ error: 'Acceso no autorizado.' });
       }
-    } else {
-      // Si la ruta no está protegida, continuar con la solicitud (rutas accesibles para cualquier usuario del mismo rol)
-      next();
     }
+
+    // Si la ruta no está protegida, continuar con la solicitud (rutas accesibles para cualquier usuario del mismo rol)
+    return next();
   } catch (error) {
     console.error('Error al verificar el JWT:', error);
     return res.status(401).json({ error: 'Token inválido o caducado.' });
@@ -76,5 +83,3 @@ function authenticateUser(req, res, next) {
 module.exports = {
   authenticateUser,
 };
-
-

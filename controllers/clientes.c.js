@@ -38,14 +38,38 @@ class ClientesController {
   }
 }
 
-  async agregarCliente(req, res) {
+// Controlador async para agregar un nuevo cliente
+async agregarCliente(req, res) {
+  // Guardar el JWT en una variable antes de eliminarlo del objeto req.body
+  const jwt = req.body.jwt;
+
+  // Eliminar el campo jwt del objeto req.body
+  delete req.body.jwt;
+
   try {
-    const nuevoCliente = req.body;
+    // Clonar el objeto req.body para evitar modificarlo directamente
+    const nuevoCliente = { ...req.body };
     await clientes.agregarCliente(nuevoCliente);
-    res.status(201).json({ message: 'Cliente agregado exitosamente' });
+
+    if (req.xhr) {
+      // Si es una solicitud AJAX, enviar la respuesta JSON
+      res.status(201).json({ message: 'Cliente agregado exitosamente' });
+    } else {
+      // Si es una solicitud normal POST, mostrar el formulario HTML
+      res.render('clientes/nuevoCliente', { message: 'Cliente agregado exitosamente' });
+    }
+
+    // Restaurar el JWT en el cuerpo de la solicitud después de agregar el cliente
+    req.body.jwt = jwt;
   } catch (error) {
     console.error('Error al agregar el cliente:', error);
-    res.status(500).json({ message: 'Ocurrió un error al agregar el cliente.' });
+    if (req.xhr) {
+      // Si es una solicitud AJAX, enviar una respuesta de error en JSON
+      res.status(500).json({ message: 'Ocurrió un error al agregar el cliente.' });
+    } else {
+      // Si es una solicitud normal POST, mostrar el formulario HTML 
+      res.render('clientes/nuevoCliente', { message: 'Agregue un nuevo cliente...' });
+    }
   }
 }
 
