@@ -47,6 +47,12 @@ app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Ruta para el mensaje de bienvenida
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Bienvenido a la base de datos Sistema Contable',
+                        message: 'Para usar la aplicación, regístrate usando la ruta localhost:3000/api/register y loguéate con localhost:3000/login. ¡Disfruta de la aplicación!' });
+});
+
 // Manejo de rutas no encontradas (404)
 app.use((req, res, next) => {
   res.status(404).json({ message: 'Ruta no encontrada' });
@@ -70,7 +76,7 @@ app.use(function(err, req, res, next) {
 
 // Inicia el servidor
 const port = process.env.PORT || 3000;
-  app.listen(port, () => {
+app.listen(port, () => {
   console.log(`Servidor Express iniciado en http://localhost:${port}`);
 });
 
