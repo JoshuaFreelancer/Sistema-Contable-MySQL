@@ -3,9 +3,10 @@ const router = express.Router();
 const { registrarUsuario } = require('../controllers/usuarios.c');
 const { obtenerUsuariosExceptoClave } = require('../models/usuarios.m');
 const { verifyToken } = require('../tools/auth');
+const { validarDatosModelo } = require('../tools/validation');
 
 // Ruta para el registro de usuarios
-router.post('/register', registrarUsuario);
+router.post('/register', validarDatosModelo('usuarios'), registrarUsuario);
 
 // Ruta protegida para obtener todos los usuarios
 router.get('/usuarios', (req, res) => {

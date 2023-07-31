@@ -16,6 +16,11 @@ async function loginUser(req, res) {
       return res.status(401).json({ error: 'Usuario no encontrado.' });
     }
 
+    // Verificar si el rol del usuario coincide con el rol proporcionado en la solicitud
+    if (user.rol !== rol) {
+      return res.status(401).json({ error: 'Rol de usuario incorrecto.' });
+    }
+
     // Comparar la contraseña proporcionada con la contraseña encriptada almacenada en la base de datos
     const isPasswordMatch = await comparePasswords(clave, user.clave);
 
@@ -49,3 +54,4 @@ async function loginUser(req, res) {
 module.exports = {
   loginUser,
 };
+

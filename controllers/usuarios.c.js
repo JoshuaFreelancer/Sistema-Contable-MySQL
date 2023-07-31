@@ -22,7 +22,7 @@ async function registrarUsuario(req, res) {
         return res.status(409).json({ error: 'El usuario ya está registrado. Por favor, ingrese uno diferente.' });
       }
 
-      // Registrar el usuario utilizando la función registerUser
+      // Registrar el usuario utilizando la función register
       await registerUser(nombre, clave, rol);
 
       return res.json({ message: 'Usuario registrado exitosamente.' });

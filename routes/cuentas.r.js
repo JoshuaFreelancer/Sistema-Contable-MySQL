@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const CuentasController = require('../controllers/cuentas.c');
 const { authenticateUser } = require('../tools/authMiddleware');
+const { validarDatosModelo } = require('../tools/validation');
 
 const cuentasController = new CuentasController();
 
@@ -14,10 +15,10 @@ router.get('/cuentas', authenticateUser, cuentasController.listarCuentas);
 router.get('/cuentas/:id', authenticateUser, cuentasController.obtenerCuenta);
 
 // Ruta para agregar una nueva cuenta
-router.post('/cuentas', authenticateUser, cuentasController.agregarCuenta);
+router.post('/cuentas', authenticateUser, validarDatosModelo('cuentas'), cuentasController.agregarCuenta);
 
 // Ruta para editar una cuenta existente por su ID
-router.put('/cuentas/:id', authenticateUser, cuentasController.editarCuenta);
+router.put('/cuentas/:id', authenticateUser, validarDatosModelo('cuentas'), cuentasController.editarCuenta);
 
 // Ruta para eliminar una cuenta por su ID
 router.delete('/cuentas/:id', authenticateUser, cuentasController.eliminarCuenta);

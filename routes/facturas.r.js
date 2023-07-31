@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const FacturasController = require('../controllers/facturas.c');
 const { authenticateUser } = require('../tools/authMiddleware');
+const { validarDatosModelo } = require('../tools/validation');
 
 const facturasController = new FacturasController();
 
@@ -14,10 +15,10 @@ router.get('/facturas', authenticateUser, facturasController.listarFacturas);
 router.get('/facturas/:id', authenticateUser, facturasController.obtenerFactura);
 
 // Ruta para agregar una nueva factura
-router.post('/facturas', authenticateUser, facturasController.agregarFactura);
+router.post('/facturas', authenticateUser, validarDatosModelo('facturas'), facturasController.agregarFactura);
 
 // Ruta para editar una factura existente por su ID
-router.put('/facturas/:id', authenticateUser, facturasController.editarFactura);
+router.put('/facturas/:id', authenticateUser, validarDatosModelo('facturas'), facturasController.editarFactura);
 
 // Ruta para eliminar una factura por su ID
 router.delete('/facturas/:id', authenticateUser, facturasController.eliminarFactura);
