@@ -1,0 +1,38 @@
+<!-- views/listarProductosEnAlmacen.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Productos en Almacén</title>
+</head>
+<body>
+    <h1>Lista de Productos en Almacén</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Código</th>
+                <th>Fecha de Ingreso</th>
+                <th>Estado</th>
+                <th>Motivo</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% productosEnAlmacen.forEach((producto) => { %>
+            <tr>
+                <td><%= producto.id %></td>
+                <td><%= producto.nombre %></td>
+                <td><%= producto.descripcion %></td>
+                <td><%= producto.codigo %></td>
+                <td><%= producto.fechaIngreso %></td>
+                <td><%= producto.estado %></td>
+                <td><%= producto.motivo %></td>
+                <td><%= producto.cantidad %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

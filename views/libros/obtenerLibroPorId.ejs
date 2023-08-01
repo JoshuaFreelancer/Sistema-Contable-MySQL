@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Información del Libro</title>
+</head>
+<body>
+    <% if (libro) { %>
+        <h1>Información del Libro - <%= libro.titulo %></h1>
+        <table>
+            <tr>
+                <th>ID:</th>
+                <td><%= libro.id %></td>
+            </tr>
+            <tr>
+                <th>Título:</th>
+                <td><%= libro.titulo %></td>
+            </tr>
+            <tr>
+                <th>Autor:</th>
+                <td><%= libro.autor %></td>
+            </tr>
+            <tr>
+                <th>Editorial:</th>
+                <td><%= libro.editorial %></td>
+            </tr>
+            <tr>
+                <th>Fecha de Publicación:</th>
+                <td><%= libro.fechaPublicacion %></td>
+            </tr>
+            <tr>
+                <th>Estado:</th>
+                <td><%= libro.estado %></td>
+            </tr>
+            <tr>
+                <th>Cantidad:</th>
+                <td><%= libro.cantidad %></td>
+            </tr>
+        </table>
+    <% } else { %>
+        <h1>Libro no encontrado</h1>
+        <p>No se encontró un libro con el ID proporcionado.</p>
+    <% } %>
+</body>
+</html>

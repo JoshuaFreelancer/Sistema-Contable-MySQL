@@ -84,6 +84,25 @@ const obtenerReglasValidacion = (modelo) => {
         body('clave').notEmpty().withMessage('El campo clave es obligatorio'),
         body('rol').notEmpty().withMessage('El campo rol es obligatorio').isIn(['Facturador', 'Contador', 'Personal']).withMessage('El campo rol debe ser uno de los valores: Facturador, Contador, Personal'),
       ];
+      case 'almacen':
+      return [
+        body('nombre').notEmpty().withMessage('El campo nombre es obligatorio'),
+        body('descripcion').notEmpty().withMessage('El campo descripción es obligatorio'),
+        body('codigo').notEmpty().withMessage('El campo código es obligatorio'),
+        body('fechaIngreso').isDate({ format: 'YYYY-MM-DD' }).withMessage('El campo fecha de ingreso debe ser una fecha válida (ejemplo: 2023-07-19)'),
+        body('estado').isIn(['A la espera', 'En uso']).withMessage('El campo estado debe ser uno de los valores: A la espera o En uso'),
+        body('motivo').optional({ nullable: true }).isString().withMessage('El campo motivo debe ser una cadena de texto'),
+        body('cantidad').notEmpty().withMessage('El campo cantidad es obligatorio').isInt({ min: 0 }).withMessage('El campo cantidad debe ser un número entero mayor o igual a 0'),
+      ];
+      case 'libros':
+        return [
+      body('titulo').notEmpty().withMessage('El campo título es obligatorio'),
+      body('autor').notEmpty().withMessage('El campo autor es obligatorio'),
+      body('editorial').notEmpty().withMessage('El campo editorial es obligatorio'),
+      body('fechaPublicacion').isDate({ format: 'YYYY-MM-DD' }).withMessage('El campo fecha es obligatorio (ejemplo: 2020-05-11)'),
+      body('estado').isIn(['Disponible', 'Agotado']).withMessage('El campo estado debe ser uno de los valores: Disponible o Agotado'),
+      body('cantidad').notEmpty().withMessage('El campo cantidad es obligatorio').isInt({ min: 0 }).withMessage('El campo cantidad debe ser un número entero'),
+  ];
     // Agregar reglas de validación para otros modelos según sea necesario
     default:
       return [];

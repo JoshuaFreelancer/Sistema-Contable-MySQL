@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Libros</title>
+</head>
+<body>
+    <h1>Lista de Libros</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Editorial</th>
+                <th>Fecha de Publicación</th>
+                <th>Estado</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% libros.forEach((libro) => { %>
+            <tr>
+                <td><%= libro.id %></td>
+                <td><%= libro.titulo %></td>
+                <td><%= libro.autor %></td>
+                <td><%= libro.editorial %></td>
+                <td><%= libro.fechaPublicacion %></td>
+                <td><%= libro.estado %></td>
+                <td><%= libro.cantidad %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

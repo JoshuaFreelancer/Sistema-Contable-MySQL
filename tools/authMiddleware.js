@@ -30,6 +30,15 @@ const rutasProtegidas = {
     rolesPermitidos: ['Facturador', 'Personal'],
     operacionesPermitidas: ['GET', 'POST', 'PUT', 'DELETE'],
   },
+  // Nuevas entidades para el proyecto
+  '/almacen': {
+    rolesPermitidos: ['Contador', 'Personal'],
+    operacionesPermitidas: ['GET', 'POST', 'PUT', 'DELETE'],
+  },
+  '/libros': {
+    rolesPermitidos: ['Contador'],
+    operacionesPermitidas: ['GET', 'POST', 'PUT', 'DELETE'],
+  },
 };
 
 // Middleware para verificar el JWT y el rol del usuario

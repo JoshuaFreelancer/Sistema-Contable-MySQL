@@ -19,6 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 const cuentasRoutes = require('./routes/cuentas.r'); 
 const clientesRoutes = require('./routes/clientes.r'); 
 const proveedoresRoutes = require('./routes/proveedores.r'); 
+const almacenRoutes = require('./routes/almacen.r'); //X Limitada para Personal
+const librosRoutes = require('./routes/libros.r'); 
+
 
 // Para el Usuario Facturador
 const productosRoutes = require('./routes/productos.r'); //X Limitada para Personal 
@@ -36,7 +39,8 @@ const usuariosRouter = require('./routes/usuarios.r');
 
 // Montar el enrutador de la aplicacion
 app.use('/api', cuentasRoutes, clientesRoutes, proveedoresRoutes, productosRoutes,
-serviciosRoutes, facturasRoutes, espaciosRouter, loginRouter, usuariosRouter);
+serviciosRoutes, facturasRoutes, espaciosRouter, loginRouter, usuariosRouter, almacenRoutes,
+librosRoutes);
 
 // Configuracion EJS como motor de plantillas
 app.set('views', path.join(__dirname, 'views'));
@@ -50,7 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Ruta para el mensaje de bienvenida
 app.get('/', (req, res) => {
   res.render('index', { title: 'Bienvenido a la base de datos Sistema Contable',
-                        message: 'Para usar la aplicación, regístrate usando la ruta localhost:3000/api/register y loguéate con localhost:3000/api/login. No olvides agregar los Header necesarios ¡Disfruta de la aplicación!' });
+                        message: `Para usar la aplicación, regístrate usando la ruta localhost:${port}/api/register y loguéate con localhost:${port}/api/login. No olvides agregar los Header necesarios ¡Disfruta de la aplicación!`});
 });
 
 // Manejo de rutas no encontradas (404)

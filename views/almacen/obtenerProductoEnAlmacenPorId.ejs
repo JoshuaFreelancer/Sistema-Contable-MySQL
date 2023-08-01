@@ -1,0 +1,49 @@
+<!-- views/obtenerProductoEnAlmacenPorId.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Información del Producto en Almacén</title>
+</head>
+<body>
+    <% if (producto) { %>
+        <h1>Información del Producto en Almacén - <%= producto.nombre %></h1>
+        <table>
+            <tr>
+                <th>ID:</th>
+                <td><%= producto.id %></td>
+            </tr>
+            <tr>
+                <th>Nombre:</th>
+                <td><%= producto.nombre %></td>
+            </tr>
+            <tr>
+                <th>Descripción:</th>
+                <td><%= producto.descripcion %></td>
+            </tr>
+            <tr>
+                <th>Código:</th>
+                <td><%= producto.codigo %></td>
+            </tr>
+            <tr>
+                <th>Fecha de Ingreso:</th>
+                <td><%= producto.fechaIngreso %></td>
+            </tr>
+            <tr>
+                <th>Estado:</th>
+                <td><%= producto.estado %></td>
+            </tr>
+            <tr>
+                <th>Motivo:</th>
+                <td><%= producto.motivo %></td>
+            </tr>
+            <tr>
+                <th>Cantidad:</th>
+                <td><%= producto.cantidad %></td>
+            </tr>
+        </table>
+    <% } else { %>
+        <h1>Producto en Almacén no encontrado</h1>
+        <p>No se encontró un producto en almacén con el ID proporcionado.</p>
+    <% } %>
+</body>
+</html>
