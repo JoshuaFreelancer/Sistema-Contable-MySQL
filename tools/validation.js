@@ -1,18 +1,23 @@
 const { body, validationResult } = require('express-validator');
 
-// Función genérica para validar datos de un modelo específico
 const validarDatosModelo = (modelo) => {
   return async (req, res, next) => {
-    // Obtener las reglas de validación específicas para el modelo
-    const reglas = obtenerReglasValidacion(modelo);
-    // Ejecutar las reglas de validación
-    await Promise.all(reglas.map((regla) => regla.run(req)));
-    // Verificar si hay errores de validación
-    const errores = validationResult(req);
-    if (!errores.isEmpty()) {
-      return res.status(422).json({ errores: errores.array() });
+    // Verificar si el body está vacío
+    if (Object.keys(req.body).length === 0) {
+      console.error('Error: El body está vacío rellenelo o use vista EJS.');
+      next(); // Pasar al siguiente middleware sin realizar validaciones
+    } else {
+      // Obtener las reglas de validación específicas para el modelo
+      const reglas = obtenerReglasValidacion(modelo);
+      // Ejecutar las reglas de validación
+      await Promise.all(reglas.map((regla) => regla.run(req)));
+      // Verificar si hay errores de validación
+      const errores = validationResult(req);
+      if (!errores.isEmpty()) {
+        return res.status(422).json({ errores: errores.array() });
+      }
+      next();
     }
-    next();
   };
 };
 
