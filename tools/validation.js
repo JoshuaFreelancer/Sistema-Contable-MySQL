@@ -103,6 +103,15 @@ const obtenerReglasValidacion = (modelo) => {
       body('estado').isIn(['Disponible', 'Agotado']).withMessage('El campo estado debe ser uno de los valores: Disponible o Agotado'),
       body('cantidad').notEmpty().withMessage('El campo cantidad es obligatorio').isInt({ min: 0 }).withMessage('El campo cantidad debe ser un número entero'),
   ];
+  case 'empleados':
+        return [
+    body('nombre').notEmpty().withMessage('El campo nombre es obligatorio'),
+    body('direccion').notEmpty().withMessage('El campo direccion es obligatorio'),
+    body('correo').isEmail().withMessage('El campo correo debe ser una dirección de correo válida'),
+    body('telefono').isNumeric().withMessage('El campo teléfono debe ser solo numérico')
+    .isLength({ min: 9, max: 9 }).withMessage('El campo teléfono debe tener 9 dígitos'),
+    body('puesto').notEmpty().withMessage('El campo puesto es obligatorio').isIn(['Gerente', 'Supervisor', 'Analista', 'Asistente']).withMessage('El campo puesto debe ser uno de los valores: Gerente, Supervisor, Analista, Asistente'),
+  ];
     // Agregar reglas de validación para otros modelos según sea necesario
     default:
       return [];

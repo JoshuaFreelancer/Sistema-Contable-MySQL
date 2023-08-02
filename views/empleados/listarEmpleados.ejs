@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Empleados</title>
+</head>
+<body>
+    <h1>Lista de Empleados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Correo</th>
+                <th>Puesto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% empleados.forEach((empleado) => { %>
+            <tr>
+                <td><%= empleado.id %></td>
+                <td><%= empleado.nombre %></td>
+                <td><%= empleado.direccion %></td>
+                <td><%= empleado.telefono %></td>
+                <td><%= empleado.correo %></td>
+                <td><%= empleado.puesto %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Información del Empleado</title>
+</head>
+<body>
+    <% if (empleado) { %>
+        <h1>Información del Empleado - <%= empleado.nombre %></h1>
+        <table>
+            <tr>
+                <th>ID:</th>
+                <td><%= empleado.id %></td>
+            </tr>
+            <tr>
+                <th>Nombre:</th>
+                <td><%= empleado.nombre %></td>
+            </tr>
+            <tr>
+                <th>Dirección:</th>
+                <td><%= empleado.direccion %></td>
+            </tr>
+            <tr>
+                <th>Teléfono:</th>
+                <td><%= empleado.telefono %></td>
+            </tr>
+            <tr>
+                <th>Correo:</th>
+                <td><%= empleado.correo %></td>
+            </tr>
+            <tr>
+                <th>Puesto:</th>
+                <td><%= empleado.puesto %></td>
+            </tr>
+        </table>
+    <% } else { %>
+        <h1>Empleado no encontrado</h1>
+        <p>No se encontró un empleado con el ID proporcionado.</p>
+    <% } %>
+</body>
+</html>

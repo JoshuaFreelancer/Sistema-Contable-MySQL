@@ -21,7 +21,7 @@ const clientesRoutes = require('./routes/clientes.r');
 const proveedoresRoutes = require('./routes/proveedores.r'); 
 const almacenRoutes = require('./routes/almacen.r'); //X Limitada para Personal
 const librosRoutes = require('./routes/libros.r'); 
-
+const empleadosRoutes = require('./routes/empleados.r'); //X Limitada para Personal
 
 // Para el Usuario Facturador
 const productosRoutes = require('./routes/productos.r'); //X Limitada para Personal 
@@ -40,7 +40,7 @@ const usuariosRouter = require('./routes/usuarios.r');
 // Montar el enrutador de la aplicacion
 app.use('/api', cuentasRoutes, clientesRoutes, proveedoresRoutes, productosRoutes,
 serviciosRoutes, facturasRoutes, espaciosRouter, loginRouter, usuariosRouter, almacenRoutes,
-librosRoutes);
+librosRoutes, empleadosRoutes);
 
 // Configuracion EJS como motor de plantillas
 app.set('views', path.join(__dirname, 'views'));
