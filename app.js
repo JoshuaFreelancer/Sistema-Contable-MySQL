@@ -24,6 +24,7 @@ const facturasRoutes = require('./routes/facturas.r');
 const espaciosRouter = require('./routes/espacios.r'); //X Limitada para Personal
 const loginRouter = require('./routes/login.r'); // Logueo
 const usuariosRouter = require('./routes/usuarios.r'); // Registro y Listado de usuarios
+const ayudaRouter = require('./routes/ayuda.r');
 
 // Montar el enrutador de la aplicación
 app.use(
@@ -39,7 +40,8 @@ app.use(
   usuariosRouter,
   almacenRoutes,
   librosRoutes,
-  empleadosRoutes
+  empleadosRoutes,
+  ayudaRouter
 );
 
 // Configuración EJS como motor de plantillas
@@ -56,6 +58,7 @@ app.get('/', (req, res) => {
   res.render('index', {
     title: 'Bienvenido a la base de datos Sistema Contable',
     message: `Para usar la aplicación, regístrate usando la ruta localhost:${port}/api/register y loguéate con localhost:${port}/api/login. No olvides agregar los Header necesarios ¡Disfruta de la aplicación!`,
+    message: "Si necesita mas informacion consulte la ruta /api/ayuda",
   });
 });
 

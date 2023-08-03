@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ayuda - Preguntas Frecuentes</title>
+</head>
+<body>
+    <h1>Ayuda - Preguntas Frecuentes</h1>
+    <% let currentTitulo = ''; %>
+    <% preguntasRespuestas.forEach((item, index) => { %>
+      <% if (item.titulo && item.titulo !== currentTitulo) { %>
+        <h2><%= item.titulo %></h2>
+        <% currentTitulo = item.titulo; %>
+      <% } %>
+      <h3>Pregunta <%= index + 1 %>: <%= item.pregunta %></h3>
+      <p>Respuesta: <%= item.respuesta %></p>
+      <hr>
+    <% }); %>
+</body>
+</html>
