@@ -3,13 +3,14 @@ const router = express.Router();
 const { registrarUsuario } = require('../controllers/usuarios.c');
 const { obtenerUsuariosExceptoClave } = require('../models/usuarios.m');
 const { verifyToken } = require('../tools/auth');
+const { authenticateUser } = require('../tools/authMiddleware');
 const { validarDatosModelo } = require('../tools/validation');
 
 // Ruta para el registro de usuarios
 router.post('/register', validarDatosModelo('usuarios'), registrarUsuario);
 
 // Ruta protegida para obtener todos los usuarios
-router.get('/usuarios', (req, res) => {
+router.get('/usuarios', authenticateUser, (req, res) => {
   try {
     // Verificar el JWT proporcionado por el cliente
     const token = req.header('Authorization').replace('Bearer ', '');

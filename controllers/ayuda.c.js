@@ -248,7 +248,12 @@ const mostrarAyuda = (req, res) => {
       respuesta: '- Para eliminar un empleado específico, realiza una solicitud DELETE a la ruta /api/empleados/:id, donde :id es el ID del empleado que deseas eliminar.',
     },
 
-    // Pregunta y respuesta para el endpoint de ayuda
+    // Pregunta y respuesta para el endpoint de ayuda e historial
+    {
+      titulo: 'Historial',
+      pregunta: '¿Cómo puedo obtener los detalles de las consultas anteriores hechas en la base de datos?',
+      respuesta: '- Para obtener los detalles de las consultas anteriores hechas por usuarios, realiza una solicitud GET a la ruta /api/historial',
+    },
     {
       titulo: 'Ayuda',
       pregunta: '¿Cómo puedo obtener los detalles de los anteriores endpoints para informar al cliente?',

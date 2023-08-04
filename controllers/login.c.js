@@ -34,11 +34,11 @@ async function loginUser(req, res) {
     // Definir los endpoints limitados por tipo de usuario
     let endpointsLimitados = [];
     if (user.rol === 'Contador') {
-      endpointsLimitados = ['cuentas', 'clientes', 'proveedores'];
+      endpointsLimitados = ['cuentas', 'clientes', 'proveedores', 'almacen', 'libros', 'empleados'];
     } else if (user.rol === 'Facturador') {
       endpointsLimitados = ['productos', 'servicios', 'facturas', 'espacios'];
     } else if (user.rol === 'Personal') {
-      endpointsLimitados = ['productos', 'servicios', 'espacios'];
+      endpointsLimitados = ['productos', 'servicios', 'espacios', 'empleados'];
     }
 
     // Mensaje de acuerdo al rol del usuario

@@ -1,4 +1,5 @@
 const { verifyToken } = require('../tools/auth');
+const { registrarAccion } = require('../tools/historial');
 
 // Definir las rutas protegidas y sus roles permitidos
 const rutasProtegidas = {
@@ -43,10 +44,18 @@ const rutasProtegidas = {
     rolesPermitidos: ['Contador', 'Personal'],
     operacionesPermitidas: ['GET', 'POST', 'PUT', 'DELETE'],
   },
+  '/historial': {
+    rolesPermitidos: ['Contador', 'Personal', 'Facturador'],
+    operacionesPermitidas: ['GET'],
+  },
+  '/usuarios': {
+    rolesPermitidos: ['Contador', 'Personal', 'Facturador'],
+    operacionesPermitidas: ['GET'],
+  },
 };
 
 // Middleware para verificar el JWT y el rol del usuario
-function authenticateUser(req, res, next) {
+async function authenticateUser(req, res, next) {
   try {
     // Intenta obtener el JWT del campo jwt en el cuerpo de la solicitud o del encabezado de autorización
     const token = req.body.jwt || (req.header('Authorization') || '').replace('Bearer ', '');
@@ -62,7 +71,20 @@ function authenticateUser(req, res, next) {
     // Obtener el rol del usuario desde el JWT
     const { rol } = decodedToken;
 
-    // Obtener el nombre de la ruta solicitada y el método de la solicitud (GET, POST, PUT, DELETE)
+    // Obtener el nombre del usuario desde el JWT
+    const { nombre } = decodedToken;
+
+    // Obtener el nombre id desde el JWT
+    const { id } = decodedToken;
+
+    // Configurar req.user con la información del usuario
+    req.user = {
+      rol,
+      nombre,
+      id,
+    };
+
+    // Obtener la ruta solicitada y el método de la solicitud (GET, POST, PUT, DELETE)
     const rutaSolicitada = req.path;
     const metodoSolicitud = req.method;
 
@@ -73,6 +95,8 @@ function authenticateUser(req, res, next) {
       if (rutaProtegida.rolesPermitidos.includes(rol)) {
         // Si el rol del usuario está permitido, verificar si la operación está permitida
         if (rutaProtegida.operacionesPermitidas.includes(metodoSolicitud)) {
+          // Registrar la acción en el historial antes de continuar con la solicitud
+          await registrarAccion(req, metodoSolicitud);
           // Si la operación está permitida, continuar con la solicitud
           return next();
         } else {

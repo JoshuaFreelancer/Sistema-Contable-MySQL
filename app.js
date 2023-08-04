@@ -25,6 +25,7 @@ const espaciosRouter = require('./routes/espacios.r'); //X Limitada para Persona
 const loginRouter = require('./routes/login.r'); // Logueo
 const usuariosRouter = require('./routes/usuarios.r'); // Registro y Listado de usuarios
 const ayudaRouter = require('./routes/ayuda.r');
+const historialRouter = require('./routes/historial.r');
 
 // Montar el enrutador de la aplicación
 app.use(
@@ -41,7 +42,8 @@ app.use(
   almacenRoutes,
   librosRoutes,
   empleadosRoutes,
-  ayudaRouter
+  ayudaRouter,
+  historialRouter
 );
 
 // Configuración EJS como motor de plantillas
