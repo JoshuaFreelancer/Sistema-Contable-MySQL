@@ -1,10 +1,10 @@
-# Pasos para el despliegue del proyecto Sistema Contable en Visual Studio Code:
+# Pasos para el despliegue del proyecto Sistema Contable MySQL en Visual Studio Code:
 
 1. Clonar el Repositorio:
    - Abre Visual Studio Code.
    - Ve al menú "View" y selecciona "Command Palette" o presiona `Ctrl + Shift + P`.
    - Escribe "Git: Clone" y selecciona la opción.
-   - Ingresa la URL del repositorio: https://github.com/Joshua-desings/sistema-contable.git
+   - Ingresa la URL del repositorio: "URL DEL REPOSITORIO".git
    - Selecciona una carpeta local para clonar el proyecto.
    - Espera a que se complete la clonación.
 
@@ -34,7 +34,7 @@ module.exports = {
       connection: {
         host: 'localhost',	   
         user: 'root',     // Cambiar por su nombre de usuario 
-        password: 'E^6BSR8y2Do@', // Cambiar por su contraseña
+        password: 'contraseña', // Cambiar por una contraseña segura
         database: 'sistema_contable',
       },
       migrations: {
@@ -72,14 +72,14 @@ npm start
    - Abre tu navegador web y visita [http://localhost:3000] para acceder a la aplicación "Sistema Contable" y ver el mensaje de bienvenida.
 
 ## Notas Adicionales:
-- Asegúrate de configurar correctamente las variables de entorno en un archivo `.env` para la conexión y además almacenar las credenciales y datos sensibles, como claves secretas o tokens JWT.
+- Asegúrate de configurar correctamente las variables de entorno en un archivo `.env` en la carpeta principal proyecto para asi establecer la conexión con el servidor y además almacenar las credenciales y datos sensibles, como claves secretas o tokens JWT.
 
 Ejemplo de archivo `.env`:
 
 ```
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=E^6BSR8y2Do@
+DB_PASSWORD=contraseña
 DB_DATABASE=sistema_contable
 JWT_SECRET=estopsecret
 ```
